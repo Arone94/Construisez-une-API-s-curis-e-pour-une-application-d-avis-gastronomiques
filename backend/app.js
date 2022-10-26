@@ -43,6 +43,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 // Options pour sécuriser les cookies
 const expiryDate = new Date(Date.now() + 3600000); // 1 heure (60 * 60 * 1000)
 app.use(session({
@@ -65,21 +66,20 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-// On utilise helmet pour plusieurs raisons notamment la mise en place du X-XSS-Protection afin d'activer le filtre de script intersites(XSS) dans les navigateurs web
-app.use(helmet());
+
 
 //Désactive la mise en cache du navigateur
 app.use(nocache());
+
+// Gestion de la ressource image de façon statique
+// Midleware qui permet de charger les fichiers qui sont dans le repertoire images
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Va servir les routes dédiées aux sauces
 app.use('/api/sauces', sauceRoutes);
 
 // Va servir les routes dédiées aux utilisateurs
 app.use('/api/auth', userRoutes);
-
-// Gestion de la ressource image de façon statique
-// Midleware qui permet de charger les fichiers qui sont dans le repertoire images
-app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Export de l'application express pour déclaration dans server.js
 module.exports = app;
