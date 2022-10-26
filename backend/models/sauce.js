@@ -1,6 +1,11 @@
+// On importe mongoose
+
 const mongoose = require('mongoose');
+// Appel le middleware de validation des champs du model de la sauce
+const sauceValidation = require('../middleware/check-sauce-input');
 
-
+// Création d'un schema mangoose pour que les données de la base MongoDB ne puissent pas différer de
+//L'id est généré automatiquement par MongoDB
 const sauceSchema = mongoose.Schema({
   userId: { type: String, required: true },
   name: { type: String, required: true },
@@ -14,6 +19,6 @@ const sauceSchema = mongoose.Schema({
   usersDisliked: { type: [ "String <userId>" ] },
 });
 
-
+// On exporte ce shéma de données
 module.exports = mongoose.model('sauce', sauceSchema);
 

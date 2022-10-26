@@ -1,3 +1,6 @@
+// On vérifie le format email
+
+
 module.exports = (req, res, next) => {
     const validEmail = (email) => {
         let emailRegexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/

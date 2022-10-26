@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 // On récupère notre model User ,créer avec le schéma mongoose
 
-const user = require('../models/user');
+const User = require('../models/user');
 
 // On utilise le package jsonwebtoken pour attribuer un token à un utilisateur au moment ou il se connecte
 
