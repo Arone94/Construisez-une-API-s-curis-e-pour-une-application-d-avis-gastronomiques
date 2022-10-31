@@ -43,6 +43,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// Protection XSS
+
+app.use(helmet.xssFilter());
+
 
 // Options pour sécuriser les cookies
 const expiryDate = new Date(Date.now() + 3600000); // 1 heure (60 * 60 * 1000)
