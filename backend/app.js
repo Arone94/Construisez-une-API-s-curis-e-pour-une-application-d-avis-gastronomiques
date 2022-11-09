@@ -47,7 +47,6 @@ app.use((req, res, next) => {
 
 app.use(helmet.xssFilter());
 
-
 // Options pour sécuriser les cookies
 const expiryDate = new Date(Date.now() + 3600000); // 1 heure (60 * 60 * 1000)
 app.use(session({
@@ -69,8 +68,6 @@ app.use(bodyParser.urlencoded({
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
 
 app.use(bodyParser.json());
-
-
 
 //Désactive la mise en cache du navigateur
 app.use(nocache());

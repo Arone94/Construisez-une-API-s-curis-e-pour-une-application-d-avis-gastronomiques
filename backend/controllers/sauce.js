@@ -85,14 +85,14 @@ exports.modifySauce = (req, res, next) => {
 };
 
 exports.deleteSauce = (req, res, next) => {
-  // Avant de suppr l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
+  // Avant de supprimer l'objet, on va le chercher pour obtenir l'url de l'image et supprimer le fichier image de la base
   Sauce.findOne({
       _id: req.params.id
     })
     .then(sauce => {
       // Pour extraire ce fichier, on récupère l'url de la sauce, et on le split autour de la chaine de caractères, donc le nom du fichier
       const filename = sauce.imageUrl.split('/images/')[1];
-      // Avec ce nom de fichier, on appelle unlink pour suppr le fichier
+      // Avec ce nom de fichier, on appelle unlink pour supprimer le fichier
       fs.unlink(`images/${filename}`, () => {
         // On supprime le document correspondant de la base de données
         Sauce.deleteOne({
